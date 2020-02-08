@@ -6,11 +6,9 @@ const breedDetailsFromFile = function(breed, callback) {
   fs.readFile(`./data/${breed}.txt`, 'utf8', (error, data) => {
     // ISSUE: Returning from inner callback function, not our main function.
     console.log('Callback: I have the data!')
-    if (!error) callback(data); 
+    if (!error) { callback(data);} 
+    else if (error) callback(undefined);
   });
 }
 
-// we try to get the return value
-breedDetailsFromFile('Bombay', (bombay) => {
-  console.log('Return Value: ', bombay) 
-});
+module.exports = breedDetailsFromFile;
